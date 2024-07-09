@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const Bookshelf = (props) => {
+const Bookshelf = () => {
   const [books, setBooks] = useState([
     { title: "Harry Potter and the Deathly Hallows", author: "JK Rowling" },
     { title: "They Both Die in the End", author: "Adam Silvera" },
@@ -16,7 +16,7 @@ const Bookshelf = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setBooks({ ...books });
+    setBooks([...books, newBook]);
     setNewBook({ title: "", author: "" });
   };
 
@@ -49,12 +49,14 @@ const Bookshelf = (props) => {
             <button type="submit">Add Book</button>
           </form>
         </div>
-        <div className="bookCardsDiv">{books.map((book, index) => (
-          <div key={index} className="bookCard">
-            <h4>{book.title}</h4>
-            <p>{book.author}</p>
-          </div>
-        ))}</div>
+        <div className="bookCardsDiv">
+          {books.map((book, index) => (
+            <div key={index} className="bookCard">
+              <h4>{book.title}</h4>
+              <p>{book.author}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
